@@ -19,6 +19,9 @@ for adder in my_adders:
     print(adder.__closure__)
 
 
+########################################################################################
+########################################################################################
+
 # Clear my list
 my_adders.clear()
 
@@ -40,7 +43,10 @@ for adder in my_adders:
 # Checking the closure on each adder with the __closure__ method
 for adder in my_adders:
     print(adder.__closure__)  # -> cell, cell, cell (same cell all the time)
+print()
 
+########################################################################################
+########################################################################################
 
 my_adders.clear()
 
@@ -62,3 +68,29 @@ for adder in my_adders:
 for adder in my_adders:
     # cell, cell, cell (Different cell objects all the time)
     print(adder.__closure__)
+print()
+
+########################################################################################
+########################################################################################
+# Clear the list
+my_adders.clear()
+
+
+def create_adder(num_to_add):
+    return lambda number: number + num_to_add
+
+
+for i in range(1, 10):
+    my_adders.append(create_adder(i))
+
+# Testing the adders
+
+for adder in my_adders:
+    print(f"Adding 10 to current adder: {adder(10)}")  # 11, 12, 13...
+print()
+
+
+for adder in my_adders:
+    # cell, cell, cell (Different cell objects all the time)
+    print(adder.__closure__)
+print()
